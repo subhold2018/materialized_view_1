@@ -12,5 +12,7 @@ spring:
 
 customer:
   destination:
-    mv-publish:
-      topic: materialized-view-1
+    mv-genral-publish:
+      topic: mv1-lookup
+    mv-merge-publish:
+      topic: mv1-mereg-pub-topic
