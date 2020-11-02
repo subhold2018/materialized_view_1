@@ -1,18 +1,29 @@
+server:
+  port: 8101
 spring:
   application:
     name: materialized-view
-  kafka:
-    consumer:
-      group-id: materialized-view-1
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:ORCL2
+    url: jdbc:oracle:thin:@//localhost:1521/xe
     username: SCOTT
     password: tiger
     driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
 
-customer:
-  destination:
-    mv-genral-publish:
-      topic: mv1-lookup
-    mv-merge-publish:
-      topic: mv1-mereg-pub-topic
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094
+      key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+      value-deserializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: latest
+      bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094
+      group-id: materialized-view-1
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+general:
+  mv:
+    topic: general-mv-topic
+
