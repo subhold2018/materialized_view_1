@@ -34,7 +34,7 @@ CREATE TABLE email_lookup_identity
   source_id varchar2(15) NOT NULL,
   source_name varchar2(10) NOT NULL,
   constituent_id varchar2(40),
-  email_type varchar2(15) NOT NULL,
+  email_type varchar2(50) NOT NULL,
   email varchar2(50) NOT NULL,
   ucb_uuid varchar2(30),
   ucb_identity_key varchar2(30),
